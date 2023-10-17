@@ -8,5 +8,5 @@ namespace: default
 
 images:
 - name: cicd-devops
-  newName: acambinza/ci-cd-devops
-  newTag: dd8f90733022c97f4dbb9eb2b378a5d360a0e911
+  newName: acambinza/cicd-devops
+  newTag: b5ed0c8f5c213f1c7063a86bc371971599463340
