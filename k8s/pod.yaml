@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cicd
+  labels:
+    name: cicd-devops
+spec:
+  containers:
+    - name: container-cicd
+      image: acambinza/ci-cd-devops:dd8f90733022c97f4dbb9eb2b378a5d360a0e911
+      ports:
+        - containerPort: 3000
