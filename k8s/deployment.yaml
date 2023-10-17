@@ -1,19 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cicd-deployment
+  name: cicd-devops
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: cicd-pod-devops
+      app: cicd-devops
   template:
     metadata:
       labels:
-        app: cicd-pod-devops
+        app: cicd-devops
     spec:
       containers:
-        - name: container-cicd-deployment
-          image: acambinza/ci-cd-devops:dd8f90733022c97f4dbb9eb2b378a5d360a0e911
+        - name: cicd-devops
           ports:
             - containerPort: 3000

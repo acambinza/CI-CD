@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+
+namespace: default
+
+images:
+- name: cicd-devops
+  newName: acambinza/ci-cd-devops
+  newTag: dd8f90733022c97f4dbb9eb2b378a5d360a0e911
