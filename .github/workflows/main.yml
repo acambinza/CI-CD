@@ -1,14 +1,13 @@
-name: build
+name: CI-CD
 on:
   push: 
     branches: ['main']
 
 jobs:
-  build:
+  BUILD:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Reposotório
       - uses: actions/checkout@v3.1.0
 
       - name: Autenticação no Docker Hub
@@ -22,7 +21,8 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
-          tags:
+          push: true
+          tags: |
             acambinza/ci-cd-devops:${{ github.sha }}
             acambinza/ci-cd-devops:latest
           
