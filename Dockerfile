@@ -10,6 +10,6 @@ COPY package.json .
 
 RUN yarn install
 
-COPY . .
+COPY ./src .
 
 CMD ["yarn", "dev"]

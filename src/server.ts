@@ -9,10 +9,13 @@ import logger from './utils/logger';
 import { loggerDesc } from './utils/loggerDesc';
 import terminate from './terminate';
 
+/*
 const httpServer: Server =
   process.env.NODE_ENV === PRODUCTION
     ? https.createServer(certs, app)
     : http.createServer(app);
+*/
+const httpServer: Server = http.createServer(app);
 
 httpServer.listen(port, () => {
   logger.info({
