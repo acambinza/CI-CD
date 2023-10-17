@@ -1,0 +1,14 @@
+node_modules
+package-lock.json
+coverage
+.vscode
+storage/
+logs/
+ssl/
+dist
+.env
+dependency-check-report.html
+
+#Ignoring git and cache folders
+.git
+.cache

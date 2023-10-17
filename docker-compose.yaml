@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    image: todo-list-devops
+    container_name: todolist-devops
+    ports:
+      - 3000:3000
+    networks:
+      - todolist
+
+networks:
+  todolist:
+    driver: brigde
+
