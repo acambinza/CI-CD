@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
         - name: cicd-devops
+          image: cicd-devops
           ports:
             - containerPort: 3000
