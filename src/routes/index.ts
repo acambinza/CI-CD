@@ -6,7 +6,7 @@ const routes = Router();
 
 const BASE_ROUTE = '/';
 routes.get(BASE_ROUTE, (req: Request, res: Response) =>
-  res.status(HTTP_STATUS_CODE.OK).json('Hello from the API - CI CD Default Path'),
+  res.status(HTTP_STATUS_CODE.OK).json('Hello from the API - DEVOPS'),
 );
 
 routes.use(testRoutes);
