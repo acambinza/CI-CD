@@ -27,7 +27,7 @@ jobs:
             acambinza/ci-cd-devops:latest
   
   SAST:
-    name: SonarCloud
+    name: SAST-SonarCloud
     runs-on: ubuntu-latest
     needs: BUILD
     steps:
@@ -41,25 +41,22 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.PATH_TOKEN }}
             SONAR_TOKER: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Autenticação no Docker Hub
-        uses: docker/login-action@v2.1.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_PWD }}
-        
-      - name: Construção da Imagem Docker
-        uses: docker/build-push-action@v3.2.0
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: |
-            acambinza/ci-cd-devops:${{ github.sha }}
-            acambinza/ci-cd-devops:latest
+  SCAN:
+    name: SCAN-Snyk
+    runs-on: ubuntu-latest
+    needs: SAST
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  
   DEPLOY:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: SAST
+    needs: SCAN
     steps:
       - name: Checkout Repositório
         uses: actions/checkout@v3.1.0
