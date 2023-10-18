@@ -6,7 +6,6 @@ on:
 jobs:
   BUILD:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repositório
         uses: actions/checkout@v3.1.0
@@ -26,7 +25,36 @@ jobs:
           tags: |
             acambinza/ci-cd-devops:${{ github.sha }}
             acambinza/ci-cd-devops:latest
+  
+  SAST:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repositório
+        uses: actions/checkout@v3.1.0
+        with:
+          fetch-depth: 0
+          name: SonarCloud Scan
+          uses: SonarSource/sonarcloud-github-action@master
+          env: |
+            GITHUB_TOKEN: ${{ secrets.PATH_TOKEN }}
+            SONAR_TOKER: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Autenticação no Docker Hub
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PWD }}
+        
+      - name: Construção da Imagem Docker
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: |
+            acambinza/ci-cd-devops:${{ github.sha }}
+            acambinza/ci-cd-devops:latest
   DEPLOY:
     name: Deploy
     runs-on: ubuntu-latest
