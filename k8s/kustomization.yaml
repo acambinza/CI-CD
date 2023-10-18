@@ -4,7 +4,7 @@ resources:
 - deployment.yaml
 - service.yaml
 
-namespace: default
+namespace: cicd-devops
 
 images:
 - name: cicd-devops
