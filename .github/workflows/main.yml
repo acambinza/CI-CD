@@ -24,8 +24,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            acambinza/ci-cd-devops:${{ github.sha }}
-            acambinza/ci-cd-devops:latest
+            acambinza/cicd-devops:${{ github.sha }}
+            acambinza/cicd-devops:latest
 
   DEPLOY:
     name: Deploy
