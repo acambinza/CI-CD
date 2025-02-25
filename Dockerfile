@@ -1,4 +1,4 @@
-FROM node:18.18.2
+FROM node:18.20.7
 
 RUN mkdir -p /home/app/node_modules && chown -R node:node /home/app
 WORKDIR /home/app
